@@ -1,9 +1,9 @@
 const parallax_el = document.querySelectorAll(".parallax");
 
-let xValue = window.innerWidth / 2,
-  yValue = window.innerHeight / 2;
+let xValue = 0,
+  yValue = 0;
 
-const update = (cursorPosition) => {
+function update(cursorPosition) {
   parallax_el.forEach((el) => {
     let speed = el.dataset.speed;
     let speedz = el.dataset.speedz;
@@ -18,7 +18,7 @@ const update = (cursorPosition) => {
       yValue * speed * 0.66
     }px)) perspective(3300px) translateZ(${zValue * speedz}px)`;
   });
-};
+}
 
 update(0);
 
