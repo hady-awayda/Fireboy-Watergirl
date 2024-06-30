@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+:root {
+  --red1: #fd0000;
+  --red2: #c80000;
+  --blue: #0076c1;
+  --cyan: #70d2fc;
+}
+
 *,
 *::before,
 *::after {
@@ -39,7 +46,7 @@ main {
 .fireboy {
   position: absolute;
   z-index: 2;
-  width: 11%;
+  width: 13%;
   top: calc(50% + 180px);
   left: calc(50% - 400px);
 }
@@ -47,7 +54,7 @@ main {
 .watergirl {
   position: absolute;
   z-index: 3;
-  width: 11%;
+  width: 13%;
   top: calc(50% + 170px);
   left: calc(50% + 300px);
 }
@@ -71,7 +78,26 @@ main {
   gap: 40px;
 }
 
-.title > h1:nth-child(1) {
+.play {
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.title {
+  background: linear-gradient(90deg, var(--red2), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.play {
+  background: linear-gradient(90deg, var(--red2), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+/* .title > h1:nth-child(1) {
   background: linear-gradient(90deg, red, crimson);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -79,13 +105,13 @@ main {
 }
 
 .title > h1:nth-child(2) {
-  background: linear-gradient(90deg, #0095de, #70d2fc);
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
-}
+} */
 
-.play > h2:nth-child(2) {
+/* .play > h2:nth-child(2) {
   background: linear-gradient(90deg, red, crimson);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -93,8 +119,8 @@ main {
 }
 
 .play > h2:nth-child(1) {
-  background: linear-gradient(90deg, #0095de, #70d2fc);
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
-}
+}  */

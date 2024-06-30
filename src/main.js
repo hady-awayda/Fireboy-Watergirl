@@ -1,5 +1,3 @@
-import Phaser from "./utils/phaser.js";
-
 // Define the SceneMain class
 class SceneMain extends Phaser.Scene {
   constructor() {
@@ -7,24 +5,20 @@ class SceneMain extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("Dungeon", "/assets/images/dungeon.png");
+    // Load the tilemap JSON and the tileset image
+    this.load.image("tiles", "../Assets/Images/Wall.png"); 
+    this.load.tilemapTiledJSON('dungeonMap', "../Dungeon.json");
   }
 
   create() {
-    const array = [
-      [0, 1, 2],
-      [0, 1, 2],
-      [0, 1, 2],
-    ];
-    console.log("ds");
-    const map = this.make.tilemap({
-      data: array,
-      tileWidth: 64,
-      tileHeight: 64,
-    });
-    const tileset = map.addTilesetImage("tiles");
-    const layer = map.createLayer(0, tileset, 0, 0);
-    console.log("sdadsa");
+    // Create the tilemap using the key from preload
+    const map = this.make.tilemap({ key: "dungeonMap" });
+
+    // Add the tileset image to the map
+    const tileset = map.addTilesetImage("Wall", "tiles"); 
+
+    // Create the layer from the map and the tileset
+    const layer = map.createLayer("Tiles", tileset, 0, 0);
   }
 
   update() {
@@ -35,8 +29,8 @@ class SceneMain extends Phaser.Scene {
 // Phaser game configuration
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 400,
+  height: 300,
   scene: SceneMain,
 };
 
