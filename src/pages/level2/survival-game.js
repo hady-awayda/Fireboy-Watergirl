@@ -1,11 +1,10 @@
-
 class MainScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'MainScene' });
+    super({ key: "MainScene" });
   }
-  
+
   preload() {
-    this.load.image('box', '../../assets/images/Mine.gif"');
+    this.load.image("box", '../../assets/images/Mine.gif"');
   }
 
   create() {
@@ -13,25 +12,26 @@ class MainScene extends Phaser.Scene {
     this.matter.add.rectangle(256, 500, 512, 50, { isStatic: true });
 
     // Add a box to the scene
-    this.box = this.matter.add.image(256, 100, 'box');
+    this.box = this.matter.add.image(256, 100, "box");
     this.box.setBounce(0.5);
 
     // Set up collision detection
     this.matterCollision.addOnCollideStart({
       objectA: this.box,
       callback: (data) => {
-        console.log('Collision detected!');
+        console.log("Collision detected!");
       },
     });
 
     // Debug output
-    console.log('Matter.Collision:', this.matterCollision);
+    console.log("Matter.Collision:", this.matterCollision);
   }
 
   update() {
     // Game logic
   }
 }
+
 const config = {
   width: 512,
   height: 512,
