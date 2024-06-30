@@ -1,15 +1,16 @@
+import PhaserMatterCollisionPlugin from "https://cdn.jsdelivr.net/npm/phaser-matter-collision-plugin@2.0.0/dist/phaser-matter-collision-plugin.min.js";
+
 const config = {
   width: 512,
   height: 512,
   backgroundColor: "#333333",
   type: Phaser.AUTO,
   parent: "survival-game",
-  scene: [],
-  // {
-  //   preload: preload,
-  //   create: create,
-  //   update: update,
-  // },
+  scene: {
+    preload: preload,
+    create: create,
+    update: update,
+  },
   scale: {
     zoom: 2,
   },
@@ -31,4 +32,16 @@ const config = {
   },
 };
 
-new phaser.Game(config);
+const game = new Phaser.Game(config);
+
+function preload() {
+  // Load assets here
+}
+
+function create() {
+  // Initialize game objects here
+}
+
+function update(time, delta) {
+  // Update game objects here
+}
