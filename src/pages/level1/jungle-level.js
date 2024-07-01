@@ -2,17 +2,21 @@
 class SceneMain extends Phaser.Scene {
     constructor() {
       super({ key: "SceneMain" });
+      this.isJump = false;
     }
   
     preload() {
+      
+        
       // Load the tilemap JSON and the tileset images
       //this.load.tilemapTiledJSON('dungeonMap', "../../utils/maps/Dungeon.tmj");
 
-      this.load.tilemapTiledJSON('jungleMap', "../../utils/maps/jungleMap.json");
+      this.load.tilemapTiledJSON('jungleMap', "../../utils/maps/jungleMap.tmj");
       this.load.image("tiles-jungle-floor", "../../../assets/maps/tiles-jungle.png"); 
       this.load.image("tiles-palm", "../../../assets/maps/palm.png"); 
       this.load.image("tiles-jungle-background", "../../../assets/maps/jungle.png");
       this.load.image("tiles-door", "../../../assets/maps/door.png");
+      this.load.image("face", "../../../assets/images/face.png");
     }
   
     create() {
@@ -35,31 +39,40 @@ class SceneMain extends Phaser.Scene {
       // Create the layers from the map and the tilesets
 
       //map.createLayer("Layer name in tiled ", tileset used in this layer, 0, 0);
-      const jungleFloorLayer = jungleMap.createLayer("Floor_Layer", jungleFloor, 0, 0);
-      const palmLayer = jungleMap.createLayer("Palm_Layer", palm, 0, 0);
       const jungleBackGroundLayer = jungleMap.createLayer("BG_Layer", jungleBackGround, 0, 0);
-      const doorLayer = jungleMap.createLayer("Door_Layer", door, 0, 0);
+      const jungleFloorLayer = jungleMap.createLayer("Floor_Layer", jungleFloor, 0, 0);
+            
+      const doorLayer = jungleMap.createLayer("Door_Layer", door, 1000, 0);
+      //const palmLayer = jungleMap.createLayer("Palm_Layer", palm, 0, 0);
+
   
       // Scale up the tilemap layer
-      //TilesLayer.setScale(2); // Adjust this value to scale up the map
-  
+      /* 
+      jungleFloorLayer.setScale(0.8); // Adjust this value to scale up the map
+      palmLayer.setScale(0.8);
+      jungleBackGroundLayer.setScale(0.5);
+      doorLayer.setScale(0.8);*/
       // Add the player sprite with physics
-      this.player = this.physics.add.sprite(100, 100, "face");
+      this.player = this.physics.add.sprite(400, 300, "face");
       this.player.setScale(2);
   
       // Enable collision for the layers
-      //TilesLayer.setCollisionByExclusion([-1]);
-      //chestLayer.setCollisionByExclusion([-1]);
+      /* */
+      jungleFloorLayer.setCollisionByExclusion([-1]);
+      //palmLayer.setCollisionByExclusion([-1]);
+      jungleBackGroundLayer.setCollisionByExclusion([-1]);
+      doorLayer.setCollisionByExclusion([-1]);
   
       // Add collision between player and layers
-      //this.physics.add.collider(this.player, TilesLayer);
-      //this.physics.add.collider(this.player, chestLayer);
+      this.physics.add.collider(this.player, jungleFloorLayer);
+      this.physics.add.collider(this.player, jungleBackGroundLayer);
+      this.physics.add.collider(this.player, doorLayer);
   
       // Set the camera to follow the player
-      this.cameras.main.startFollow(this.player);
+      //this.cameras.main.startFollow(this.player);
   
       // Set the camera bounds to match the map size
-      this.cameras.main.setBounds(0, 0, jungleMap.widthInPixels * 3, jungleMap.heightInPixels * 2); // Adjust for scaling
+      //this.cameras.main.setBounds(0, 0, jungleMap.widthInPixels * 3, jungleMap.heightInPixels * 2); // Adjust for scaling
   
       // Create cursor keys for player movement
       this.cursors = this.input.keyboard.createCursorKeys();
@@ -84,21 +97,26 @@ class SceneMain extends Phaser.Scene {
       this.player.setVelocityX(300);
     }
     // Jump logic
-    if (this.spacebar.isDown && this.player.body.blocked.down) {
-      this.player.setVelocityY(-300); // Adjust the value to control jump height
-  }
+    if (this.spacebar.isDown ) {
+        this.player.setVelocityY(-1500); // Adjust the value to control jump height
+        this.isJumping = true; // Set the jumping flag
+    }
+    if (this.player.body.touching.down) {
+        this.isJumping = false; // Reset the jumping flag when player is on the ground
+    }
+    
   }
 }
   
   
   const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 2400,
+    height: 775,
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
+            gravity: { y: 10000 },
             debug: false
         }
     },
