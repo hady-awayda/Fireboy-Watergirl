@@ -13,9 +13,24 @@ class MainScene extends Phaser.Scene {
 
   preload() {
     Player.preload(this, this.char1, this.char2);
+    // this.load.image("tiles", "/assets/images/RPG Nature Tileset.png");
+    // this.load.tilemapTiledJSON("map", "/assets/images/map.json");
   }
 
   create() {
+    // const map = this.make.tilemap({ key: "map" });
+    // const tileset = map.addTilesetImage(
+    //   "RPG Nature Tileset",
+    //   "tiles",
+    //   32,
+    //   32,
+    //   0,
+    //   0
+    // );
+    // const layer1 = map.createLayer("Ground", tileset, 0, 0);
+    // const layer2 = map.createLayer("Rubble", tileset, 0, 0);
+    // layer1.setCollisionByProperty({ Collide: true });
+    // this.matter.world.convertTilemapLayer(layer1);
     this.player1 = new Player({
       scene: this,
       x: this.p1x,
@@ -24,6 +39,7 @@ class MainScene extends Phaser.Scene {
       width: 30,
       height: 30,
     });
+
     this.add.existing(this.player1);
     this.player1.inputKeys = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.UP,
@@ -40,6 +56,7 @@ class MainScene extends Phaser.Scene {
       width: 30,
       height: 40,
     });
+
     this.add.existing(this.player2);
     this.player2.inputKeys = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
