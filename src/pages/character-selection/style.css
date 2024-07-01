@@ -8,6 +8,26 @@ body {
   box-sizing: border-box;
 }
 
+header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 50px;
+}
+
+header a {
+  width: 200px;
+  text-align: center;
+  margin-left: 50px;
+}
+
+.select-header {
+  text-align: center;
+  margin-right: 150px;
+  width: 100%;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;
@@ -23,6 +43,7 @@ button {
   color: white;
   background-color: #aaa;
   padding: 3px 5px;
+  cursor: pointer;
 }
 
 .character-main {

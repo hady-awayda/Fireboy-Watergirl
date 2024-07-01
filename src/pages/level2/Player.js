@@ -2,7 +2,6 @@ class Player extends Phaser.Physics.Matter.Sprite {
   constructor(data) {
     let { scene, x, y, texture, width, height } = data;
     super(scene.matter.world, x, y, texture);
-    this.texture = texture;
     this.scene.add.existing(this);
 
     this.setDisplaySize(width, height);
@@ -16,15 +15,20 @@ class Player extends Phaser.Physics.Matter.Sprite {
     this.setFixedRotation();
   }
 
-  static preload(scene) {
-    if (this.texture === "player1") {
+  static preload(scene, char1, char2) {
+    if (char1 === "player1" || char2 === "player1") {
       scene.load.image("player1", "/assets/images/face.png");
-    } else if (this.texture === "player2") {
-      scene.load.image("player2", "/assets/images/fireboy.webp");
-    } else if (this.texture === "customCharacter1") {
-      scene.load.image("player1", "/assets/characters/custom-character1.png");
-    } else if (this.texture === "customCharacter2") {
-      scene.load.image("player2", "/assets/characters/custom-character2.png");
+    }
+    if (char1 === "player2" || char2 === "player2") {
+      scene.load.image("player2", "/assets/images/fireboy.png");
+    }
+    if (char1 !== "player1" && char1 !== "player2") {
+      console.log(char1);
+      scene.load.image(char1, `/assets/images/${char1}.png`);
+    }
+    if (char2 !== "player1" && char2 !== "player2") {
+      console.log(char2);
+      scene.load.image(char2, `/assets/images/${char2}.png`);
     }
   }
 

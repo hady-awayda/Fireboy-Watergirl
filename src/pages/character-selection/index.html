@@ -8,47 +8,14 @@
     <!-- <link rel="stylesheet" href="/style.css" /> -->
   </head>
   <body>
-    <h1>Select Your Character</h1>
-    <main class="character-main">
-      <div id="character-selection">
-        <div class="character">
-          <img src="/assets/images/face.png" alt="Character 1" />
-          <div class="character-buttons">
-            <button onclick="setCharacter1('face')">Set as Character 1</button>
-            <button onclick="setCharacter2('face')">Set as Character 2</button>
-          </div>
-        </div>
-        <div class="character">
-          <img src="/assets/images/fireboy.webp" alt="Character 2" />
-          <div class="character-buttons">
-            <button onclick="setCharacter1('fireboy')">
-              Set as Character 1
-            </button>
-            <button onclick="setCharacter2('fireboy')">
-              Set as Character 2
-            </button>
-          </div>
-        </div>
-
-        <div class="character">
-          <img src="/assets/images/watergirl.webp" alt="Character 3" />
-          <div class="character-buttons">
-            <button onclick="setCharacter1('watergirl')">
-              Set as Character 1
-            </button>
-            <button onclick="setCharacter2('watergirl')">
-              Set as Character 2
-            </button>
-          </div>
-        </div>
-        <div class="character">
-          <img src="/assets/images/wall.png" alt="Character 4" />
-          <div class="character-buttons">
-            <button onclick="setCharacter1('wall')">Set as Character 1</button>
-            <button onclick="setCharacter2('wall')">Set as Character 2</button>
-          </div>
-        </div>
+    <header>
+      <a href="/"><h1>Home</h1></a>
+      <div class="select-header">
+        <h1>Select Your Character</h1>
       </div>
+    </header>
+    <main class="character-main">
+      <div id="character-selection"></div>
       <div class="page-buttons">
         <a href="/src/pages/character-customization/index.html"
           ><button>Design Character</button></a

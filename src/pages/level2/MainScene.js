@@ -12,7 +12,7 @@ class MainScene extends Phaser.Scene {
   }
 
   preload() {
-    Player.preload(this);
+    Player.preload(this, this.char1, this.char2);
   }
 
   create() {
