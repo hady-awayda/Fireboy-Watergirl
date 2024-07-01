@@ -2,7 +2,6 @@ import MainScene from "./MainScene.js";
 
 const storedCharacters = JSON.parse(localStorage.getItem("characters"));
 const selectedCharacters = storedCharacters.selectedCharacters;
-// console.log(selectedCharacters.char1);
 
 const char1 = selectedCharacters.char1 || "player1";
 const char2 = selectedCharacters.char2 || "player2";

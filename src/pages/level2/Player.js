@@ -23,11 +23,9 @@ class Player extends Phaser.Physics.Matter.Sprite {
       scene.load.image("player2", "/assets/images/fireboy.png");
     }
     if (char1 !== "player1" && char1 !== "player2") {
-      console.log(char1);
       scene.load.image(char1, `/assets/images/${char1}.png`);
     }
     if (char2 !== "player1" && char2 !== "player2") {
-      console.log(char2);
       scene.load.image(char2, `/assets/images/${char2}.png`);
     }
   }
