@@ -14,13 +14,13 @@ const config = {
   parent: "game",
   scene: [new MainScene(400, 350, 2380, 490, char1, char2)],
   scale: {
-    zoom: 2,
+    zoom: 0.6,
   },
   physics: {
     default: "matter",
     matter: {
       debug: false,
-      gravity: { y: 0.5 },
+      gravity: { y: 0 },
     },
   },
   plugins: {
