@@ -1,0 +1,92 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 50px;
+}
+
+header a {
+  width: 200px;
+  text-align: center;
+  margin-left: 50px;
+}
+
+.select-header {
+  text-align: center;
+  margin-right: 150px;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:visited {
+  color: black;
+}
+
+button {
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: white;
+  background-color: #aaa;
+  padding: 3px 5px;
+  cursor: pointer;
+}
+
+.character-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 60vh;
+  width: 100%;
+}
+
+img {
+  height: 100px;
+}
+
+#character-selection {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 50%;
+}
+
+.character {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 180px;
+  width: 220px;
+}
+
+.character-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.page-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  width: 100%;
+}
+
+.page-buttons button {
+  padding: 10px 20px;
+}

@@ -1,10 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
 :root {
-  --red1: #fd0000;
-  --red2: #c80000;
-  --blue: #0076c1;
+  --red1: #ca44229a;
+  --red2: rgb(201, 154, 14);
+  --blue: #a524d8;
   --cyan: #70d2fc;
+}
+
+button {
+  border: none;
 }
 
 *,
@@ -16,12 +20,12 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Syne Mono", monospace;
 }
 
 main {
   position: relative;
-  background-color: #726933;
+  background-color: black;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -68,7 +72,7 @@ main {
   font-size: 50px;
   z-index: 4;
   width: 70%;
-  top: calc(50% - 130px);
+  top: calc(50% - 180px);
   left: calc(50%);
 }
 
@@ -84,6 +88,7 @@ main {
 }
 
 .title {
+  margin-bottom: 100px;
   background: linear-gradient(90deg, var(--red2), var(--blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
