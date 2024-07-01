@@ -83,6 +83,7 @@ class MainScene extends Phaser.Scene {
     });
     
     this.player1.setScale(0.05);
+    this.player2.setScale(1.8);
 
     //COLLISIONS:
       this.player1.setCollisionCategory(1);  
@@ -105,7 +106,7 @@ class MainScene extends Phaser.Scene {
   });
 
   //collision between player 1 and other layers
-  /* 
+  
   this.matter.world.on('collisionstart', (event) => {
     event.pairs.forEach((pair) => {
       const { bodyA, bodyB } = pair;
@@ -123,7 +124,7 @@ class MainScene extends Phaser.Scene {
         console.log('Collision with unknown objects:', objectA, objectB);
       }
     });
-  });*/
+  });
 
   }
 
