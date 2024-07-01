@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Character Selection</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="/style.css" />
+    <!-- <link rel="stylesheet" href="/style.css" /> -->
   </head>
   <body>
     <h1>Select Your Character</h1>
@@ -49,10 +49,12 @@
           </div>
         </div>
       </div>
-      <a href="/src/pages/character-customization/index.html"
-        >Design Character</a
-      >
-      <button onclick="resetCharacters()">Reset Characters</button>
+      <div class="page-buttons">
+        <a href="/src/pages/character-customization/index.html"
+          ><button>Design Character</button></a
+        >
+        <button onclick="resetCharacters()">Reset Characters</button>
+      </div>
     </main>
     <script src="script.js"></script>
   </body>
