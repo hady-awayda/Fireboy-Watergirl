@@ -8,7 +8,7 @@ class SceneMain extends Phaser.Scene {
       // Load the tilemap JSON and the tileset images
       //this.load.tilemapTiledJSON('dungeonMap', "../../utils/maps/Dungeon.tmj");
       
-      //this.load.tilemapTiledJSON('dungeonMap', "../../utils/maps/jungle_map_1..tmj");
+      this.load.tilemapTiledJSON('dungeonMap', "../../utils/maps/jungleMap.tmj");
       this.load.image("tiles1", "../../../assets/images/Wall.png"); 
       this.load.image("tiles2", "../../../assets/images/Player0.png"); 
       this.load.image("face", "../../../assets/images/face.png");
