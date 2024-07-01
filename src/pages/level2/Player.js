@@ -9,8 +9,8 @@ class Player extends Phaser.Physics.Matter.Sprite {
     // this.setFrictionAir(0.02);
     this.setBody({
       type: "circle",
-      width: width,
-      height: height,
+      width: width - 6,
+      height: height - 6,
     });
     this.setFixedRotation();
   }
