@@ -7,6 +7,10 @@
   --cyan: #70d2fc;
 }
 
+button {
+  border: none;
+}
+
 *,
 *::before,
 *::after {
