@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderElement("face");
   renderElement("fireboy");
   renderElement("watergirl");
-  renderElement("floor");
+  renderElement("face");
 
   for (let i = 0; i < characters.length; i++) {
     renderElement(characters[i]);
