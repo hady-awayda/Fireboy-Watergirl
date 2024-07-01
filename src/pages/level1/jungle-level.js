@@ -97,14 +97,10 @@ class SceneMain extends Phaser.Scene {
       this.player.setVelocityX(300);
     }
     // Jump logic
-    if (this.spacebar.isDown ) {
+    if (this.spacebar.isDown) {
         this.player.setVelocityY(-1500); // Adjust the value to control jump height
         this.isJumping = true; // Set the jumping flag
     }
-    if (this.player.body.touching.down) {
-        this.isJumping = false; // Reset the jumping flag when player is on the ground
-    }
-    
   }
 }
   
@@ -116,7 +112,7 @@ class SceneMain extends Phaser.Scene {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 10000 },
+            gravity: { y: 20000 },
             debug: false
         }
     },
