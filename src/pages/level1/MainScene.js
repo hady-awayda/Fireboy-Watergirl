@@ -9,9 +9,8 @@ class MainScene extends Phaser.Scene {
     this.p2y = p2Y;
     this.char1 = char1;
     this.char2 = char2;
-    this.characterTouchingGround1=false;
-    this.characterTouchingGround2=false;
     this.characterTouchingGround=false;
+    this.canJump=true;
   }
 
   preload() {
@@ -95,45 +94,49 @@ class MainScene extends Phaser.Scene {
           (bodyA.label === 'Circle Body' && bodyB.gameObject && bodyB.label === "Rectangle Body")
           ||(bodyB.label === 'Circle Body' && bodyA.gameObject && bodyA.label === "Rectangle Body")){
             this.characterTouchingGround = true;
-            //console.log("reached first check")
-            console.log("player collided with floor !!!");
+            
           }
-          /*
-          if(
-          (bodyB.label === 'Circle Body' && bodyA.gameObject && bodyA.label === "Rectangle Body") 
-          ||(bodyA.label === 'Circle Body' && bodyB.gameObject && bodyB.label === "Rectangle Body")) {
-          this.characterTouchingGround2 = true;  // Set the flag when collision occurs
-          //console.log("reached second check")
-          console.log("player collided 222!!!")
-        }*/
       });
     });
 
   }
   
   update() {
+
     this.player1.update();
     this.player2.update();
     
-    
-    if (Phaser.Input.Keyboard.JustDown(this.player2.inputKeys.up) && this.characterTouchingGround) {
+    if (Phaser.Input.Keyboard.JustDown(this.player2.inputKeys.up) && this.characterTouchingGround && this.canJump) {
       this.characterTouchingGround = false;
-      //Set skate velocity
-      this.player2.setVelocityY(-50);
+      this.canJump = false; // Disable further jumps
+      // Set jump velocity
+      this.player2.setVelocityY(-100);
     }
-    else if (!this.characterTouchingGround){
-      
-    }
-    if (Phaser.Input.Keyboard.JustDown(this.player1.inputKeys.up) && this.characterTouchingGround) {
-      this.characterTouchingGround = false;
-      //Set skate velocity
-      this.player1.setVelocityY(-50);
-    }
-    else{
 
+    // Check if player1 can jump
+    if (Phaser.Input.Keyboard.JustDown(this.player1.inputKeys.up) && this.characterTouchingGround && this.canJump) {
+      this.characterTouchingGround = false;
+      this.canJump = false; // Disable further jumps
+      // Set jump velocity
+      this.player1.setVelocityY(-100);
+    }
+
+    // Reset characterTouchingGround to false only when characters are in the air
+    if (this.characterTouchingGround) {
+      if (this.player1.body.velocity.y === 0 && this.player2.body.velocity.y === 0) {
+        this.characterTouchingGround = true;
+      } else {
+        this.characterTouchingGround = false;
+      }
+    }
+
+    if(!this.characterTouchingGround){
+      setTimeout(() => {
+        this.canJump = true; // Enable jumping again after timeout
+      }, 300); // Adjust timeout duration as needed
     }
   }
+  
   }
-
 
 export default MainScene;
