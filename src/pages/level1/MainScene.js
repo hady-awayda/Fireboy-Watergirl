@@ -38,11 +38,25 @@ class MainScene extends Phaser.Scene {
     const palmLayer = jungleMap.createLayer("Palm_Layer",palm,-250,0)
 
     jungleFloorLayer.setCollisionByProperty({ collision: true });
+    doorLayer.setCollisionByProperty({ nextLevel: true });
 
     this.matter.world.convertTilemapLayer(jungleBackGroundLayer);
     this.matter.world.convertTilemapLayer(jungleFloorLayer);
     this.matter.world.convertTilemapLayer(doorLayer);
     this.matter.world.convertTilemapLayer(palmLayer);
+
+    // Set a name for each MatterTileBody
+    jungleFloorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "jungleFloorTile";
+      }
+    });
+
+    doorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "doorTile";
+      }
+    });
 
     this.player1 = new Player({
       label : "player1",
@@ -86,15 +100,22 @@ class MainScene extends Phaser.Scene {
       event.pairs.forEach((pair) => {
         const { bodyA, bodyB } = pair;
 
+        console.log(bodyA.gameObject);
+        console.log(bodyB.gameObject);
         //console.log(bodyA.label);
         //console.log(bodyB.label);
         
         // Check if the collision involves the jungleFloorLayer and any of the players
         if (
-          (bodyA.label === 'Circle Body' && bodyB.gameObject && bodyB.label === "Rectangle Body")
-          ||(bodyB.label === 'Circle Body' && bodyA.gameObject && bodyA.label === "Rectangle Body")){
+          (bodyA.label === 'Circle Body' && bodyB.gameObject && bodyB.label === "jungleFloorTile")
+          ||(bodyB.label === 'Circle Body' && bodyA.gameObject && bodyA.label === "jungleFloorTile")){
             this.characterTouchingGround = true;
-            
+            console.log("collided with floor");
+          }
+        if((bodyA.label === 'Circle Body' && bodyB.gameObject && bodyB.label === "doorTile")
+          ||(bodyB.label === 'Circle Body' && bodyA.gameObject && bodyA.label === "doorTile")){
+            this.characterTouchingGround = true;
+            console.log("collided with door");
           }
       });
     });
