@@ -119,7 +119,7 @@ class MainScene extends Phaser.Scene {
     if (Phaser.Input.Keyboard.JustDown(this.player2.inputKeys.up) && this.characterTouchingGround) {
       this.characterTouchingGround = false;
       //Set skate velocity
-      this.player2.setVelocityY(-50);
+      this.player2.setVelocityY(-110);
     }
     else if (!this.characterTouchingGround){
       
@@ -127,13 +127,13 @@ class MainScene extends Phaser.Scene {
     if (Phaser.Input.Keyboard.JustDown(this.player1.inputKeys.up) && this.characterTouchingGround) {
       this.characterTouchingGround = false;
       //Set skate velocity
-      this.player1.setVelocityY(-50);
+      this.player1.setVelocityY(-110);
     }
-    else{
 
+    else if (!this.characterTouchingGround){
+      //this.player1.inputKeys.up.enabled = false;
     }
   }
   }
-
 
 export default MainScene;
