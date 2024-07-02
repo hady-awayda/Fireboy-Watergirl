@@ -1,14 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap");
+
 :root {
   --red1: #ca44229a;
   --red2: rgb(201, 154, 14);
   --blue: #a524d8;
   --cyan: #70d2fc;
-}
-
-button {
-  border: none;
 }
 
 *,
@@ -17,9 +13,6 @@ button {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-body {
   font-family: "Syne Mono", monospace;
 }
 
@@ -32,6 +25,10 @@ main {
   color: white;
 }
 
+button {
+  border: none;
+}
+
 .parallax {
   pointer-events: none;
   transition: 0.5s cubic-bezier(0.2, 0.49, 0.32, 0.99);
@@ -40,7 +37,7 @@ main {
 .bg-img {
   position: absolute;
   z-index: 1;
-  width: 110%;
+  width: 120%;
   top: 50%;
   left: 50%;
   filter: blur(3px);
@@ -50,16 +47,16 @@ main {
 .fireboy {
   position: absolute;
   z-index: 2;
-  width: 13%;
-  top: calc(50% + 180px);
+  width: 15%;
+  top: calc(50% + 220px);
   left: calc(50% - 400px);
 }
 
 .watergirl {
   position: absolute;
   z-index: 3;
-  width: 13%;
-  top: calc(50% + 170px);
+  width: 15%;
+  top: calc(50% + 200px);
   left: calc(50% + 300px);
 }
 
@@ -72,7 +69,7 @@ main {
   font-size: 50px;
   z-index: 4;
   width: 70%;
-  top: calc(50% - 180px);
+  top: calc(50% - 120px);
   left: calc(50%);
 }
 
@@ -88,7 +85,6 @@ main {
 }
 
 .title {
-  margin-bottom: 100px;
   background: linear-gradient(90deg, var(--red2), var(--blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -101,31 +97,3 @@ main {
   -webkit-text-fill-color: transparent;
   font-weight: 700;
 }
-
-/* .title > h1:nth-child(1) {
-  background: linear-gradient(90deg, red, crimson);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
-}
-
-.title > h1:nth-child(2) {
-  background: linear-gradient(90deg, var(--cyan), var(--blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
-} */
-
-/* .play > h2:nth-child(2) {
-  background: linear-gradient(90deg, red, crimson);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-}
-
-.play > h2:nth-child(1) {
-  background: linear-gradient(90deg, var(--cyan), var(--blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
-}  */

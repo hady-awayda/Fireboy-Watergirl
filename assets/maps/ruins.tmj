@@ -72,7 +72,7 @@
         {
          "columns":25,
          "firstgid":1,
-         "image":"maps\/city-ruins.png",
+         "image":"..\/tilesets\/ruins.png",
          "imageheight":600,
          "imagewidth":800,
          "margin":0,
@@ -85,7 +85,7 @@
         {
          "columns":10,
          "firstgid":451,
-         "image":"maps\/tiles-wood.png",
+         "image":"..\/tilesets\/tiles-wood.png",
          "imageheight":256,
          "imagewidth":320,
          "margin":0,
@@ -822,7 +822,7 @@
         {
          "columns":2,
          "firstgid":531,
-         "image":"maps\/skull.png",
+         "image":"..\/tilesets\/skull.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
@@ -835,7 +835,7 @@
         {
          "columns":2,
          "firstgid":535,
-         "image":"maps\/door.png",
+         "image":"..\/tilesets\/door.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,

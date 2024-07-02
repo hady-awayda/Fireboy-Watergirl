@@ -13,23 +13,21 @@ class MainScene extends Phaser.Scene {
 
   preload() {
     Player.preload(this, this.char1, this.char2);
-    this.load.image("tiles", "/assets/images/RPG Nature Tileset.png");
-    this.load.tilemapTiledJSON("map", "/assets/images/map.json");
+    this.load.tilemapTiledJSON("map", "/assets/maps/ruins.json");
+    this.load.image("tiles-ruins", "/assets/tilesets/ruins.png");
+    this.load.image("tiles-door", "/assets/tilesets/door.png");
+    this.load.image("tiles-skull", "/assets/tilesets/skull.png");
+    this.load.image("tiles", "/assets/tilesets/tiles-wood.png");
   }
 
   create() {
     const map = this.make.tilemap({ key: "map" });
-    const tileset = map.addTilesetImage(
-      "RPG Nature Tileset",
-      "tiles",
-      32,
-      32,
-      0,
-      0
-    );
-    const layer1 = map.createLayer("Ground", tileset, 0, 0);
-    const layer2 = map.createLayer("Rubble", tileset, 0, 0);
-    layer1.setCollisionByProperty({ collide: true });
+    const tileSet1 = map.addTilesetImage("tiles", "tiles-wood", 32, 32, 0, 0);
+    const tileSet2 = map.addTilesetImage("tiles", "tiles-ruins", 32, 32, 0, 0);
+    const tileSet3 = map.addTilesetImage("tiles", "tiles-skull", 32, 32, 0, 0);
+    const layer1 = map.createLayer("Ground", tileSet1, 0, 0);
+    const layer2 = map.createLayer("Rubble", tileSet2, 0, 0);
+    // layer1.setCollisionByProperty({ collide: true });
     this.matter.world.convertTilemapLayer(layer1);
     this.player1 = new Player({
       scene: this,
