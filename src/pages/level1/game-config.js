@@ -12,12 +12,15 @@ const config = {
   backgroundColor: "#333333",
   type: Phaser.AUTO,
   parent: "game",
-  scene: [new MainScene(400, 350, 2380, 490, char1, char2)],
+  scene: [new MainScene(400, 250, 2380, 390, char1, char2)],
   scale: {
-    zoom: 2,
+    zoom: 0.5,
   },
   physics: {
     default: "matter",
+    arcade: {
+      debug: true
+    },
     matter: {
       debug: false,
       gravity: { y: 0.5 },

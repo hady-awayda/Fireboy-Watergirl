@@ -17,17 +17,17 @@ class Player extends Phaser.Physics.Matter.Sprite {
     this.setFixedRotation();
 
     // Add collision filter if needed
-    //this.setCollisionCategory(1);
-    //this.setCollidesWith([1, 2, 3, 4]);
+    this.setCollisionCategory(1);
+    this.setCollidesWith([1, 2, 3, 4]);
 
   }
 
   static preload(scene, char1, char2) {
     if (char1 === "player1" || char2 === "player1") {
-      scene.load.image("player1", "/assets/images/face.png");
+      scene.load.image("player1", "/assets/images/fireboy.png");
     }
     if (char1 === "player2" || char2 === "player2") {
-      scene.load.image("player2", "/assets/images/fireboy.png");
+      scene.load.image("player2", "/assets/images/face.png");
     }
     if (char1 !== "player1" && char1 !== "player2") {
       scene.load.image(char1, `/assets/images/${char1}.png`);
