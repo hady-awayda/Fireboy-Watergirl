@@ -14,8 +14,6 @@ class Player extends Phaser.Physics.Matter.Sprite {
     });
     this.setFixedRotation();
     
-
-
   }
 
   static preload(scene, char1, char2) {
@@ -53,8 +51,6 @@ class Player extends Phaser.Physics.Matter.Sprite {
     playerVelocity.scale(speed);
     this.setVelocity(playerVelocity.x, playerVelocity.y);
     
-    
-
   }
 }
 
