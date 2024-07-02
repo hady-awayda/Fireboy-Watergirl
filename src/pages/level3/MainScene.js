@@ -35,15 +35,15 @@ class MainScene extends Phaser.Scene {
 
     const hillsMap = this.make.tilemap({ key: "hillsMap" });
 
-    const hillsFloor = hillsMap.addTilesetImage("tiles-hills","tiles-stones-floor",32,32);
-    const palm = jungleMap.addTilesetImage("palm", "tiles-palm",32,32);
-    const hillsBackGround = hillsMap.addTilesetImage("hills-background","tiles-hills-background",32,32);
-    const door = jungleMap.addTilesetImage("door", "tiles-door",32,32);
+    const hillsFloor = hillsMap.addTilesetImage("tiles-stones","tiles-stones-floor",32,32);
+    const palm = hillsMap.addTilesetImage("palm", "tiles-palm",32,32);
+    const hillsBackGround = hillsMap.addTilesetImage("hills","tiles-hills-background",32,32);
+    const door = hillsMap.addTilesetImage("door", "tiles-door",32,32);
 
     const hillsBackGroundLayer = hillsMap.createLayer("background",hillsBackGround,-250,0);
     const hillsFloorLayer = hillsMap.createLayer("ground",hillsFloor,-250,0);
     const doorLayer = hillsMap.createLayer("decoration", door, -250, 50);
-    const palmLayer = hillsMap.createLayer("decoration",palm,-250,0)
+    //const palmLayer = hillsMap.createLayer("decoration",palm,-250,0)
 
 
 
@@ -57,7 +57,7 @@ class MainScene extends Phaser.Scene {
     this.matter.world.convertTilemapLayer(hillsBackGroundLayer);
     this.matter.world.convertTilemapLayer(hillsFloorLayer);
     this.matter.world.convertTilemapLayer(doorLayer);
-    this.matter.world.convertTilemapLayer(palmLayer);
+    //this.matter.world.convertTilemapLayer(palmLayer);
 
     this.player1 = new Player({
       label : "player1",
