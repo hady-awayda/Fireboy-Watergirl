@@ -13,11 +13,15 @@ class Player extends Phaser.Physics.Matter.Sprite {
       height: height - 6,
     });
     this.setFixedRotation();
+    
+
+
   }
 
   static preload(scene, char1, char2) {
+
     if (char1 === "player1" || char2 === "player1") {
-      scene.load.image("player1", "/assets/images/face.png");
+      scene.load.image("player1", "/assets/characters/right.png");
     }
     if (char1 === "player2" || char2 === "player2") {
       scene.load.image("player2", "/assets/images/fireboy.png");
@@ -28,6 +32,7 @@ class Player extends Phaser.Physics.Matter.Sprite {
     if (char2 !== "player1" && char2 !== "player2") {
       scene.load.image(char2, `/assets/images/${char2}.png`);
     }
+
   }
 
   update() {
@@ -47,6 +52,9 @@ class Player extends Phaser.Physics.Matter.Sprite {
     playerVelocity.normalize();
     playerVelocity.scale(speed);
     this.setVelocity(playerVelocity.x, playerVelocity.y);
+    
+    
+
   }
 }
 
