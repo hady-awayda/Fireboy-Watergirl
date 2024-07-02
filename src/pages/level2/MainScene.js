@@ -16,25 +16,36 @@ class MainScene extends Phaser.Scene {
     this.load.tilemapTiledJSON("map", "/assets/maps/ruins.tmj");
     this.load.image("bg", "/assets/tilesets/ruins.png");
     this.load.image("tiles", "/assets/tilesets/tiles-wood.png");
-    this.load.image("tiles-door", "/assets/tilesets/door.png");
-    this.load.image("tiles-skull", "/assets/tilesets/skull.png");
+    this.load.image("door", "/assets/tilesets/door.png");
+    this.load.image("decoration", "/assets/tilesets/skull.png");
   }
 
   create() {
     const map = this.make.tilemap({ key: "map" });
-    const bg = map.addTilesetImage("bg-tile", "bg", 32, 32, 0, 0);
-    const ground = map.addTilesetImage("wood-tiles", "tiles", 32, 32, 0, 0);
-    const door = map.addTilesetImage("door", "tiles-door", 32, 32, 0, 0);
-    const skull = map.addTilesetImage("skull", "tiles-skull", 32, 32, 0, 0);
+    this.jumpBunny();
 
-    const bgLayer = map.createLayer("Background", bg, 0, 0);
-    const groundLayer = map.createLayer("Ground", ground, 0, 0);
-    const doorLayer = map.createLayer("Door", door, 0, 0);
-    const skullLayer = map.createLayer("Skull", skull, 0, 0);
+    const bgTileset = map.addTilesetImage("bg", "bg", 32, 32, 0, 0);
+    const groundTileset = map.addTilesetImage("tiles", "tiles", 32, 32, 0, 0);
+    const doorTileset = map.addTilesetImage("door", "door", 64, 64, 0, 0);
+    const skullTileset = map.addTilesetImage(
+      "decoration",
+      "decoration",
+      64,
+      64,
+      0,
+      0
+    );
 
-    // layer1.setCollisionByProperty({ collide: true });
+    const bgLayer = map.createLayer("Background", bgTileset, 0, 0);
+    const groundLayer = map.createLayer("Ground", groundTileset, 0, 0);
+    const doorLayer = map.createLayer("Door", doorTileset, 0, 0);
+    const skullLayer = map.createLayer("Decoration", skullTileset, 0, 0);
+
+    groundLayer.setCollisionByProperty({ collision: true });
     this.matter.world.convertTilemapLayer(groundLayer);
     this.matter.world.convertTilemapLayer(bgLayer);
+    this.matter.world.convertTilemapLayer(doorLayer);
+    this.matter.world.convertTilemapLayer(skullLayer);
 
     this.player1 = new Player({
       scene: this,
@@ -53,13 +64,16 @@ class MainScene extends Phaser.Scene {
       right: Phaser.Input.Keyboard.KeyCodes.RIGHT,
     });
 
+    this.player1.setBounce(0.2);
+    this.player1.setFriction(0.05, 0.1, 0.01);
+
     this.player2 = new Player({
       scene: this,
       x: this.p2x,
       y: this.p2y,
       texture: this.char2,
       width: 30,
-      height: 40,
+      height: 30,
     });
 
     this.add.existing(this.player2);

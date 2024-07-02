@@ -7,14 +7,14 @@ const char1 = selectedCharacters.char1 || "player1";
 const char2 = selectedCharacters.char2 || "player2";
 
 const config = {
-  width: 2800,
-  height: 1000,
+  width: 1536,
+  height: 738,
   backgroundColor: "#333333",
   type: Phaser.AUTO,
   parent: "game",
-  scene: [new MainScene(200, 200, 300, 200, char1, char2)],
+  scene: [new MainScene(60, 320, 90, 320, char1, char2)],
   scale: {
-    zoom: 0.5,
+    zoom: 2,
   },
   physics: {
     default: "matter",
