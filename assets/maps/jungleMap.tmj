@@ -46,7 +46,7 @@
          "height":32,
          "id":1,
          "name":"BG_Layer",
-         "offsetx":-384.848484848485,
+         "offsetx":-390.909090909091,
          "offsety":-160.606060606061,
          "opacity":1,
          "type":"tilelayer",
@@ -968,6 +968,79 @@
          "spacing":0,
          "tilecount":16,
          "tileheight":32,
+         "tiles":[
+                {
+                 "id":1,
+                 "properties":[
+                        {
+                         "name":"nextLevel",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":2,
+                 "properties":[
+                        {
+                         "name":"nextLevel",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":5,
+                 "properties":[
+                        {
+                         "name":"nextLevel",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":6,
+                 "properties":[
+                        {
+                         "name":"nextLevel",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":9,
+                 "properties":[
+                        {
+                         "name":"nextLevel",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":10,
+                 "properties":[
+                        {
+                         "name":"nextLevel",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":13,
+                 "properties":[
+                        {
+                         "name":"nextLevel",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":14,
+                 "properties":[
+                        {
+                         "name":"nextLevel",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
          "tilewidth":32
         }],
  "tilewidth":32,

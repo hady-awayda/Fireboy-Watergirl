@@ -58,11 +58,25 @@ class MainScene extends Phaser.Scene {
     const palmLayer = jungleMap.createLayer("Palm_Layer", palm, -250, 0);
 
     jungleFloorLayer.setCollisionByProperty({ collision: true });
+    doorLayer.setCollisionByProperty({ nextLevel: true });
 
     this.matter.world.convertTilemapLayer(jungleBackGroundLayer);
     this.matter.world.convertTilemapLayer(jungleFloorLayer);
     this.matter.world.convertTilemapLayer(doorLayer);
     this.matter.world.convertTilemapLayer(palmLayer);
+
+    // Set a name for each MatterTileBody
+    jungleFloorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "jungleFloorTile";
+      }
+    });
+
+    doorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "doorTile";
+      }
+    });
 
     this.player1 = new Player({
       label: "player1",
@@ -105,6 +119,8 @@ class MainScene extends Phaser.Scene {
       event.pairs.forEach((pair) => {
         const { bodyA, bodyB } = pair;
 
+        console.log(bodyA.gameObject);
+        console.log(bodyB.gameObject);
         //console.log(bodyA.label);
         //console.log(bodyB.label);
 
