@@ -9,8 +9,8 @@ class Player extends Phaser.Physics.Matter.Sprite {
     // this.setFrictionAir(0.02);
     this.setBody({
       type: "circle",
-      width: width - 6,
-      height: height - 6,
+      width: width,
+      height: height,
     });
     this.setFixedRotation();
   }
@@ -41,8 +41,6 @@ class Player extends Phaser.Physics.Matter.Sprite {
     }
     if (this.inputKeys.up.isDown) {
       playerVelocity.y = -1;
-    } else if (this.inputKeys.down.isDown) {
-      playerVelocity.y = 1;
     }
     playerVelocity.normalize();
     playerVelocity.scale(speed);
