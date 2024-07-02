@@ -57,7 +57,7 @@ class MainScene extends Phaser.Scene {
       0
     );
     const doorLayer = jungleMap.createLayer("Door_Layer", door, 1030, 0);
-
+    jungleFloorLayer.setCollisionByProperty({ collision: true });
     this.matter.world.convertTilemapLayer(jungleFloorLayer);
     this.matter.world.convertTilemapLayer(doorLayer);
 
