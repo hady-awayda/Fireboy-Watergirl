@@ -36,13 +36,13 @@ class MainScene extends Phaser.Scene {
     const hillsMap = this.make.tilemap({ key: "hillsMap" });
 
     const hillsFloor = hillsMap.addTilesetImage("tiles-hills","tiles-stones-floor",32,32);
-    const palm = jungleMap.addTilesetImage("palm", "tiles-palm",32,32);
+    const palm = hillseMap.addTilesetImage("palm", "tiles-palm",32,32);
     const hillsBackGround = hillsMap.addTilesetImage("hills-background","tiles-hills-background",32,32);
-    const door = jungleMap.addTilesetImage("door", "tiles-door",32,32);
+    const door = hillsMap.addTilesetImage("door", "tiles-door",32,32);
 
     const hillsBackGroundLayer = hillsMap.createLayer("background",hillsBackGround,-250,0);
     const hillsFloorLayer = hillsMap.createLayer("ground",hillsFloor,-250,0);
-    const doorLayer = hillsMap.createLayer("decoration", door, -250, 50);
+    const doorLayer = hillsMap.createLayer("door", door, -250, 50);
     const palmLayer = hillsMap.createLayer("decoration",palm,-250,0)
 
 
