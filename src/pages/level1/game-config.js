@@ -14,7 +14,7 @@ const config = {
   parent: "game",
   scene: [new MainScene(400, 250, 2380, 390, char1, char2)],
   scale: {
-    zoom: 0.5,
+    zoom: 0.6,
   },
   physics: {
     default: "matter",
@@ -23,7 +23,7 @@ const config = {
     },
     matter: {
       debug: false,
-      gravity: { y: 0.5 },
+      gravity: { y: 0 },
     },
   },
   plugins: {
