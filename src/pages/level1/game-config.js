@@ -19,7 +19,7 @@ const config = {
   physics: {
     default: "matter",
     arcade: {
-      debug: true
+      debug: true,
     },
     matter: {
       debug: true,

@@ -96,8 +96,8 @@ class MainScene extends Phaser.Scene {
 
     this.player2.setFriction(0.05, 0.1, 0.01);
     this.player1.setFriction(0.05, 0.1, 0.01);
-    this.player1.setScale(0.05);
-    this.player2.setScale(0.05);
+    this.player1.setScale(2);
+    this.player2.setScale(2);
 
     // Detect collisions between players and the jungleFloorLayer
     this.matter.world.on("collisionactive", (event) => {
