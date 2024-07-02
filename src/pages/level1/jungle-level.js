@@ -55,18 +55,7 @@ class SceneMain extends Phaser.Scene {
       // Add the player sprite with physics
       this.player = this.physics.add.sprite(400, 300, "face");
       this.player.setScale(2);
-  
-      // Enable collision for the layers
-      /* */
-      jungleFloorLayer.setCollisionByExclusion([-1]);
-      //palmLayer.setCollisionByExclusion([-1]);
-      jungleBackGroundLayer.setCollisionByExclusion([-1]);
-      doorLayer.setCollisionByExclusion([-1]);
-  
-      // Add collision between player and layers
-      this.physics.add.collider(this.player, jungleFloorLayer);
-      this.physics.add.collider(this.player, jungleBackGroundLayer);
-      this.physics.add.collider(this.player, doorLayer);
+
   
       // Set the camera to follow the player
       //this.cameras.main.startFollow(this.player);
