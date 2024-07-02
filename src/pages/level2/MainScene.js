@@ -13,22 +13,29 @@ class MainScene extends Phaser.Scene {
 
   preload() {
     Player.preload(this, this.char1, this.char2);
-    this.load.tilemapTiledJSON("map", "/assets/maps/ruins.json");
-    this.load.image("tiles-ruins", "/assets/tilesets/ruins.png");
+    this.load.tilemapTiledJSON("map", "/assets/maps/ruins.tmj");
+    this.load.image("bg", "/assets/tilesets/ruins.png");
+    this.load.image("tiles", "/assets/tilesets/tiles-wood.png");
     this.load.image("tiles-door", "/assets/tilesets/door.png");
     this.load.image("tiles-skull", "/assets/tilesets/skull.png");
-    this.load.image("tiles", "/assets/tilesets/tiles-wood.png");
   }
 
   create() {
     const map = this.make.tilemap({ key: "map" });
-    const tileSet1 = map.addTilesetImage("tiles", "tiles-wood", 32, 32, 0, 0);
-    const tileSet2 = map.addTilesetImage("tiles", "tiles-ruins", 32, 32, 0, 0);
-    const tileSet3 = map.addTilesetImage("tiles", "tiles-skull", 32, 32, 0, 0);
-    const layer1 = map.createLayer("Ground", tileSet1, 0, 0);
-    const layer2 = map.createLayer("Rubble", tileSet2, 0, 0);
+    const bg = map.addTilesetImage("bg-tile", "bg", 32, 32, 0, 0);
+    const ground = map.addTilesetImage("wood-tiles", "tiles", 32, 32, 0, 0);
+    const door = map.addTilesetImage("door", "tiles-door", 32, 32, 0, 0);
+    const skull = map.addTilesetImage("skull", "tiles-skull", 32, 32, 0, 0);
+
+    const bgLayer = map.createLayer("Background", bg, 0, 0);
+    const groundLayer = map.createLayer("Ground", ground, 0, 0);
+    const doorLayer = map.createLayer("Door", door, 0, 0);
+    const skullLayer = map.createLayer("Skull", skull, 0, 0);
+
     // layer1.setCollisionByProperty({ collide: true });
-    this.matter.world.convertTilemapLayer(layer1);
+    this.matter.world.convertTilemapLayer(groundLayer);
+    this.matter.world.convertTilemapLayer(bgLayer);
+
     this.player1 = new Player({
       scene: this,
       x: this.p1x,
