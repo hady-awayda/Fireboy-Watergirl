@@ -23,8 +23,6 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-    //Detect collision with ground
-
     const jungleMap = this.make.tilemap({ key: "jungleMap" });
 
     const jungleFloor = jungleMap.addTilesetImage(
@@ -58,11 +56,24 @@ class MainScene extends Phaser.Scene {
     const palmLayer = jungleMap.createLayer("Palm_Layer", palm, -250, 0);
 
     jungleFloorLayer.setCollisionByProperty({ collision: true });
+    doorLayer.setCollisionByProperty({ nextLevel: true });
 
     this.matter.world.convertTilemapLayer(jungleBackGroundLayer);
     this.matter.world.convertTilemapLayer(jungleFloorLayer);
     this.matter.world.convertTilemapLayer(doorLayer);
     this.matter.world.convertTilemapLayer(palmLayer);
+
+    jungleFloorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "jungleFloorTile";
+      }
+    });
+
+    doorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "doorTile";
+      }
+    });
 
     this.player1 = new Player({
       label: "player1",
@@ -99,25 +110,28 @@ class MainScene extends Phaser.Scene {
     this.player1.setScale(2);
     this.player2.setScale(2);
 
-    // Detect collisions between players and the jungleFloorLayer
     this.matter.world.on("collisionactive", (event) => {
-      console.log("checking collisionactive");
       event.pairs.forEach((pair) => {
-        const { bodyA, bodyB } = pair;
-
-        //console.log(bodyA.label);
-        //console.log(bodyB.label);
-
-        // Check if the collision involves the jungleFloorLayer and any of the players
         if (
           (bodyA.label === "Circle Body" &&
             bodyB.gameObject &&
-            bodyB.label === "Rectangle Body") ||
+            bodyB.label === "jungleFloorTile") ||
           (bodyB.label === "Circle Body" &&
             bodyA.gameObject &&
-            bodyA.label === "Rectangle Body")
+            bodyA.label === "jungleFloorTile")
         ) {
           this.characterTouchingGround = true;
+        }
+        if (
+          (bodyA.label === "Circle Body" &&
+            bodyB.gameObject &&
+            bodyB.label === "doorTile") ||
+          (bodyB.label === "Circle Body" &&
+            bodyA.gameObject &&
+            bodyA.label === "doorTile")
+        ) {
+          this.characterTouchingGround = true;
+          window.location.href = "/src/pages/level2/index.html";
         }
       });
     });
