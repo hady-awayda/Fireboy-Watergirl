@@ -116,6 +116,43 @@ class MainScene extends Phaser.Scene {
   update() {
     this.player1.update();
     this.player2.update();
+
+    if (
+      Phaser.Input.Keyboard.JustDown(this.player2.inputKeys.up) &&
+      this.characterTouchingGround &&
+      this.canJump
+    ) {
+      this.characterTouchingGround = false;
+      this.canJump = false;
+      this.player2.setVelocityY(-70);
+    }
+
+    if (
+      Phaser.Input.Keyboard.JustDown(this.player1.inputKeys.up) &&
+      this.characterTouchingGround &&
+      this.canJump
+    ) {
+      this.characterTouchingGround = false;
+      this.canJump = false;
+      this.player1.setVelocityY(-70);
+    }
+
+    if (this.characterTouchingGround) {
+      if (
+        this.player1.body.velocity.y === 0 &&
+        this.player2.body.velocity.y === 0
+      ) {
+        this.characterTouchingGround = true;
+      } else {
+        this.characterTouchingGround = false;
+      }
+    }
+
+    if (!this.characterTouchingGround) {
+      setTimeout(() => {
+        this.canJump = true;
+      }, 300);
+    }
   }
 }
 

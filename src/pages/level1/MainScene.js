@@ -23,6 +23,8 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
+    //Detect collision with ground
+
     const jungleMap = this.make.tilemap({ key: "jungleMap" });
 
     const jungleFloor = jungleMap.addTilesetImage(
@@ -56,24 +58,11 @@ class MainScene extends Phaser.Scene {
     const palmLayer = jungleMap.createLayer("Palm_Layer", palm, -250, 0);
 
     jungleFloorLayer.setCollisionByProperty({ collision: true });
-    doorLayer.setCollisionByProperty({ nextLevel: true });
 
     this.matter.world.convertTilemapLayer(jungleBackGroundLayer);
     this.matter.world.convertTilemapLayer(jungleFloorLayer);
     this.matter.world.convertTilemapLayer(doorLayer);
     this.matter.world.convertTilemapLayer(palmLayer);
-
-    jungleFloorLayer.forEachTile((tile) => {
-      if (tile.physics.matterBody) {
-        tile.physics.matterBody.body.label = "jungleFloorTile";
-      }
-    });
-
-    doorLayer.forEachTile((tile) => {
-      if (tile.physics.matterBody) {
-        tile.physics.matterBody.body.label = "doorTile";
-      }
-    });
 
     this.player1 = new Player({
       label: "player1",
@@ -86,12 +75,7 @@ class MainScene extends Phaser.Scene {
     });
 
     this.add.existing(this.player1);
-    this.player1.inputKeys = this.input.keyboard.addKeys({
-      up: Phaser.Input.Keyboard.KeyCodes.SPACE,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-    });
+    this.player1.inputKeys = this.input.keyboard.createCursorKeys();
     this.player2 = new Player({
       label: "player2",
       scene: this,
@@ -103,34 +87,31 @@ class MainScene extends Phaser.Scene {
     });
 
     this.add.existing(this.player2);
-    this.player2.inputKeys = this.input.keyboard.createCursorKeys(); //detect arrow key presses for player2 (right-side)
+    this.player2.inputKeys = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.SPACE,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+    });
 
     this.player2.setFriction(0.05, 0.1, 0.01);
     this.player1.setFriction(0.05, 0.1, 0.01);
-    this.player1.setScale(2);
-    this.player2.setScale(2);
+    this.player1.setScale(0.05);
+    this.player2.setScale(0.05);
 
     this.matter.world.on("collisionactive", (event) => {
       event.pairs.forEach((pair) => {
+        const { bodyA, bodyB } = pair;
         if (
           (bodyA.label === "Circle Body" &&
             bodyB.gameObject &&
-            bodyB.label === "jungleFloorTile") ||
+            bodyB.label === "Rectangle Body") ||
           (bodyB.label === "Circle Body" &&
             bodyA.gameObject &&
-            bodyA.label === "jungleFloorTile")
+            bodyA.label === "Rectangle Body")
         ) {
           this.characterTouchingGround = true;
-        }
-        if (
-          (bodyA.label === "Circle Body" &&
-            bodyB.gameObject &&
-            bodyB.label === "doorTile") ||
-          (bodyB.label === "Circle Body" &&
-            bodyA.gameObject &&
-            bodyA.label === "doorTile")
-        ) {
-          this.characterTouchingGround = true;
+          console.log("Door collided with");
           window.location.href = "/src/pages/level2/index.html";
         }
       });
@@ -147,24 +128,20 @@ class MainScene extends Phaser.Scene {
       this.canJump
     ) {
       this.characterTouchingGround = false;
-      this.canJump = false; // Disable further jumps
-      // Set jump velocity
+      this.canJump = false;
       this.player2.setVelocityY(-100);
     }
 
-    // Check if player1 can jump
     if (
       Phaser.Input.Keyboard.JustDown(this.player1.inputKeys.up) &&
       this.characterTouchingGround &&
       this.canJump
     ) {
       this.characterTouchingGround = false;
-      this.canJump = false; // Disable further jumps
-      // Set jump velocity
+      this.canJump = false;
       this.player1.setVelocityY(-100);
     }
 
-    // Reset characterTouchingGround to false only when characters are in the air
     if (this.characterTouchingGround) {
       if (
         this.player1.body.velocity.y === 0 &&
@@ -178,8 +155,8 @@ class MainScene extends Phaser.Scene {
 
     if (!this.characterTouchingGround) {
       setTimeout(() => {
-        this.canJump = true; // Enable jumping again after timeout
-      }, 300); // Adjust timeout duration as needed
+        this.canJump = true;
+      }, 300);
     }
   }
 }
