@@ -12,7 +12,7 @@ const config = {
   backgroundColor: "#333333",
   type: Phaser.AUTO,
   parent: "game",
-  scene: [new MainScene(310, 400, 1870, 420, char1, char2)],
+  scene: [new MainScene(310, 400, 1670, 420, char1, char2)],
   scale: {
     zoom: 0.6,
   },

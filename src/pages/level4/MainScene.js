@@ -17,7 +17,7 @@ class MainScene extends Phaser.Scene {
   preload() {
     Player.preload(this, this.char1, this.char2);
 
-    this.load.tilemapTiledJSON("spookyMap", "/assets/maps/spooky.tmj");
+    this.load.tilemapTiledJSON("spookyMap", "/assets/maps/spookie.tmj");
     this.load.image("tiles-skulls-floor", "/assets/tilesets/tiles-skulls.png");
     this.load.image("tiles-skull", "/assets/tilesets/skull.png");
     this.load.image("tiles-spooky-background", "/assets/tilesets/spooky.png");
