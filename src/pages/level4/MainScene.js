@@ -117,7 +117,7 @@ class MainScene extends Phaser.Scene {
             bodyA.label === "doorTile")
         ) {
           this.characterTouchingGround = true;
-          window.location.href = "/src/pages/level4/index.html";
+          window.location.href = "/src/pages/thanks-for-playing/index.html";
         }
       });
     });
