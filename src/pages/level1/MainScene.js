@@ -146,7 +146,7 @@ class MainScene extends Phaser.Scene {
     ) {
       this.characterTouchingGround = false;
       this.canJump = false;
-      this.player2.setVelocityY(-100);
+      this.player2.setVelocityY(-130);
     }
 
     if (
@@ -156,7 +156,7 @@ class MainScene extends Phaser.Scene {
     ) {
       this.characterTouchingGround = false;
       this.canJump = false;
-      this.player1.setVelocityY(-100);
+      this.player1.setVelocityY(-130);
     }
 
     if (this.characterTouchingGround) {
