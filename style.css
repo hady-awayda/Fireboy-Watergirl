@@ -1,4 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap");
+
+:root {
+  --red1: #ca44229a;
+  --red2: rgb(201, 154, 14);
+  --blue: #a524d8;
+  --cyan: #70d2fc;
+}
 
 *,
 *::before,
@@ -6,19 +13,20 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Syne Mono", monospace;
 }
 
 main {
   position: relative;
-  background-color: #726933;
+  background-color: black;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
   color: white;
+}
+
+button {
+  border: none;
 }
 
 .parallax {
@@ -29,7 +37,7 @@ main {
 .bg-img {
   position: absolute;
   z-index: 1;
-  width: 110%;
+  width: 120%;
   top: 50%;
   left: 50%;
   filter: blur(3px);
@@ -39,16 +47,16 @@ main {
 .fireboy {
   position: absolute;
   z-index: 2;
-  width: 11%;
-  top: calc(50% + 180px);
+  width: 15%;
+  top: calc(50% + 220px);
   left: calc(50% - 400px);
 }
 
 .watergirl {
   position: absolute;
   z-index: 3;
-  width: 11%;
-  top: calc(50% + 170px);
+  width: 15%;
+  top: calc(50% + 200px);
   left: calc(50% + 300px);
 }
 
@@ -61,7 +69,7 @@ main {
   font-size: 50px;
   z-index: 4;
   width: 70%;
-  top: calc(50% - 130px);
+  top: calc(50% - 0px);
   left: calc(50%);
 }
 
@@ -71,30 +79,40 @@ main {
   gap: 40px;
 }
 
-.title > h1:nth-child(1) {
-  background: linear-gradient(90deg, red, crimson);
+.play {
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.title {
+  margin-bottom: 100px;
+  background: linear-gradient(90deg, var(--red2), var(--blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 600;
 }
 
-.title > h1:nth-child(2) {
-  background: linear-gradient(90deg, #0095de, #70d2fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
-}
-
-.play > h2:nth-child(2) {
-  background: linear-gradient(90deg, red, crimson);
+.play {
+  background: linear-gradient(90deg, var(--red2), var(--blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
 }
-
-.play > h2:nth-child(1) {
-  background: linear-gradient(90deg, #0095de, #70d2fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
+.leftbottom{
+  width: 90vw;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  height: 150px;
+  margin-top: 100px;
+}
+.rightside{
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.leftside{
+align-self: flex-end;
 }

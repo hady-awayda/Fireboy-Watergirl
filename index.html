@@ -4,26 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FireBoy WaterGirl</title>
-    <link rel="stylesheet " href="Styles/style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main>
       <img
-        src="Assets/Images/bg.webp"
+        src="/assets/tilesets/spooky.png"
         alt="Background Image"
         class="parallax bg-img"
-        data-speed="0.2"
+        data-speed="0.12"
         data-speedz="0"
       />
       <img
-        src="Assets/Images/Fireboy.webp"
+        src="/assets/characters/right.png"
         alt="Fireboy"
         class="parallax fireboy"
         data-speed="0.25"
         data-speedz="-15"
       />
       <img
-        src="Assets/Images/Watergirl.webp"
+        src="/assets/characters/right2.png"
         alt="Watergirl"
         class="parallax watergirl"
         data-speed="0.28"
@@ -31,15 +31,39 @@
       />
       <div class="menu parallax" data-speed="0.05" data-speedz="0.2">
         <div class="title">
-          <h1>Fireboy</h1>
-          <h1>Watergirl</h1>
+          <h1>Run N</h1>
+          <h1>Race</h1>
         </div>
-        <div class="play">
+        <a class="play" href="/src/pages/level1/index.html">
+          <img src="assets/icons/free-play-1912208-1617677.png" alt="play icon" height="100px" width="100px">
           <h2>Play</h2>
           <h2>Game</h2>
+        </a>
+        <div class="leftbottom">
+          <div class="leftside">
+            <a href="#" style="cursor: pointer;">
+            <img src="/assets/icons/settings-icon.png" alt="" height="60px" width="60px" ">
+          </a>
+          </div>
+
+          <div class="rightside">
+            <a class="play" href="/src/pages/character-selection/index.html">
+              <h2>Customize</h2>
+              <h2>Character</h2>
+            </a>
+  
+            <a class="play" href="/src/pages/howtoplay/index.html">
+              <h2>How To Play</h2>
+            </a>
+
+          </div>
+          
+
         </div>
+        
       </div>
     </main>
-    <script src="Scripts/script.js"></script>
+    <script src="script.js"></script>
+    <script src="/src/main.js"></script>
   </body>
 </html>
