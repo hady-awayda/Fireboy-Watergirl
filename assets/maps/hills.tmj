@@ -82,15 +82,6 @@
          "id":2,
          "name":"ground",
          "opacity":1,
-<<<<<<< HEAD
-=======
-         "properties":[
-                {
-                 "name":"collision",
-                 "type":"bool",
-                 "value":true
-                }],
->>>>>>> d2ece243aea23f1a07822ecd5cd992dbd2bc4e34
          "type":"tilelayer",
          "visible":true,
          "width":80,
@@ -211,7 +202,6 @@
          "imagewidth":320,
          "margin":0,
          "name":"tiles-stones",
-<<<<<<< HEAD
          "properties":[
                 {
                  "name":"collision",
@@ -942,11 +932,6 @@
                          "value":true
                         }]
                 }],
-=======
-         "spacing":0,
-         "tilecount":80,
-         "tileheight":32,
->>>>>>> d2ece243aea23f1a07822ecd5cd992dbd2bc4e34
          "tilewidth":32
         }, 
         {
