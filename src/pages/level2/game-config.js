@@ -1,4 +1,5 @@
 import MainScene from "./MainScene.js";
+// import Phaser from "phaser";
 
 const storedCharacters = JSON.parse(localStorage.getItem("characters"));
 const selectedCharacters = storedCharacters?.selectedCharacters;

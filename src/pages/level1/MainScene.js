@@ -1,4 +1,4 @@
-import Player from "./Player.js";
+import Player from "/src/utils/helpers/Player.js";
 
 class MainScene extends Phaser.Scene {
   constructor(p1X, p1Y, p2X, p2Y, char1, char2) {
@@ -9,7 +9,6 @@ class MainScene extends Phaser.Scene {
     this.p2y = p2Y;
     this.char1 = char1;
     this.char2 = char2;
-    // this.characterTouchingGround = false;
     this.canJump = true;
   }
 
@@ -23,8 +22,6 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-    //Detect collision with ground
-
     const jungleMap = this.make.tilemap({ key: "jungleMap" });
 
     const jungleFloor = jungleMap.addTilesetImage(
@@ -109,7 +106,7 @@ class MainScene extends Phaser.Scene {
 
     this.player2.setFriction(0.05, 0.1, 0.01);
     this.player1.setFriction(0.05, 0.1, 0.01);
-    this.player1.setScale(0.05);
+    this.player1.setScale(2);
     this.player2.setScale(0.05);
 
     this.matter.world.on("collisionactive", (event) => {

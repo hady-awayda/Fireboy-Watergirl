@@ -1,3 +1,5 @@
+// import Phaser from "phaser";
+
 class Player extends Phaser.Physics.Matter.Sprite {
   constructor(data) {
     let { scene, x, y, texture, width, height } = data;
@@ -5,19 +7,17 @@ class Player extends Phaser.Physics.Matter.Sprite {
     this.scene.add.existing(this);
 
     this.setDisplaySize(width, height);
-    // this.setScaleMode(this, Phaser.ScaleModes.FIT);
-    // this.setFrictionAir(0.02);
     this.setBody({
       type: "circle",
-      width: width - 6,
-      height: height - 6,
+      width: width,
+      height: height,
     });
     this.setFixedRotation();
   }
 
   static preload(scene, char1, char2) {
     if (char1 === "player1" || char2 === "player1") {
-      scene.load.image("player1", "/assets/characters/right.png");
+      scene.load.image("player1", "/assets/images/face.png");
     }
     if (char1 === "player2" || char2 === "player2") {
       scene.load.image("player2", "/assets/images/fireboy.png");
@@ -39,11 +39,6 @@ class Player extends Phaser.Physics.Matter.Sprite {
     } else if (this.inputKeys.right.isDown) {
       playerVelocity.x = 1;
     }
-    // if (this.inputKeys.up.isDown) {
-    //   playerVelocity.y = 0;
-    // } else if (this.inputKeys.down.isDown) {
-    //   playerVelocity.y = 1;
-    // }
     playerVelocity.normalize();
     playerVelocity.scale(speed);
     this.setVelocity(playerVelocity.x, playerVelocity.y);

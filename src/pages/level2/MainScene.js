@@ -1,4 +1,5 @@
-import Player from "./Player.js";
+import Player from "/src/utils/helpers/Player.js";
+// import Phaser from "phaser";
 
 class MainScene extends Phaser.Scene {
   constructor(p1X, p1Y, p2X, p2Y, char1, char2) {
