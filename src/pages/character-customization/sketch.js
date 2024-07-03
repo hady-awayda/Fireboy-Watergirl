@@ -3,7 +3,7 @@ let saveButton;
 function setup() {
   createCanvas(800, 600);
   stroke(0);
-  strokeWeight(2);
+  strokeWeight(20);
 
   saveButton = createButton("Make Your Character");
   saveButton.position(350, 10);
@@ -11,8 +11,8 @@ function setup() {
 }
 
 function draw() {
-  stroke(1);
-  strokeWeight(1);
+  stroke(20);
+  strokeWeight(20);
   if (mouseIsPressed) {
     line(pmouseX, pmouseY, mouseX, mouseY);
   }
