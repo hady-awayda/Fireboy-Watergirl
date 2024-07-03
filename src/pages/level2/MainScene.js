@@ -34,11 +34,24 @@ class MainScene extends Phaser.Scene {
     const skullLayer = map.createLayer("Decoration", skullTileset, 0, 0);
 
     groundLayer.setCollisionByProperty({ collision: true });
+    doorLayer.setCollisionByProperty({ nextLevel: true });
 
     this.matter.world.convertTilemapLayer(groundLayer);
     this.matter.world.convertTilemapLayer(bgLayer);
     this.matter.world.convertTilemapLayer(doorLayer);
     this.matter.world.convertTilemapLayer(skullLayer);
+
+    groundLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "jungleFloorTile";
+      }
+    });
+
+    doorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "doorTile";
+      }
+    });
 
     this.player1 = new Player({
       scene: this,
@@ -71,6 +84,38 @@ class MainScene extends Phaser.Scene {
 
     this.player1.setFriction(0.05, 0.1, 0.01);
     this.player2.setFriction(0.05, 0.1, 0.01);
+
+    this.matter.world.on("collisionactive", (event) => {
+      // console.log("checking collisionactive");
+      event.pairs.forEach((pair) => {
+        const { bodyA, bodyB } = pair;
+
+        // console.log(bodyA.gameObject);
+        // console.log(bodyB.gameObject);
+
+        if (
+          (bodyA.label === "Circle Body" &&
+            bodyB.gameObject &&
+            bodyB.label === "jungleFloorTile") ||
+          (bodyB.label === "Circle Body" &&
+            bodyA.gameObject &&
+            bodyA.label === "jungleFloorTile")
+        ) {
+          this.characterTouchingGround = true;
+        }
+        if (
+          (bodyA.label === "Circle Body" &&
+            bodyB.gameObject &&
+            bodyB.label === "doorTile") ||
+          (bodyB.label === "Circle Body" &&
+            bodyA.gameObject &&
+            bodyA.label === "doorTile")
+        ) {
+          this.characterTouchingGround = true;
+          window.location.href = "/src/pages/level3/index.html";
+        }
+      });
+    });
   }
 
   update() {
