@@ -16,12 +16,23 @@ class Player extends Phaser.Physics.Matter.Sprite {
   }
 
   static preload(scene, char1, char2) {
+    const characters = JSON.parse(
+      localStorage.getItem("characters")
+    ).createdCharacters;
+
     if (char1 === "player1" || char2 === "player1") {
       scene.load.image("player1", "/assets/images/face.png");
     }
     if (char1 === "player2" || char2 === "player2") {
       scene.load.image("player2", "/assets/images/fireboy.png");
     }
+
+    characters.forEach((char) => {
+      if (char1 === char.name || char2 === char.name) {
+        scene.textures.addBase64(char.name, char.image);
+      }
+    });
+
     if (char1 !== "player1" && char1 !== "player2") {
       scene.load.image(char1, `/assets/images/${char1}.png`);
     }

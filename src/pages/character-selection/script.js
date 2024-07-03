@@ -27,6 +27,7 @@ function setCharacter2(characterKey) {
 
 function resetCharacters() {
   let characters = JSON.parse(localStorage.getItem("characters"));
+  characters.createdCharacters = [];
   characters.selectedCharacters = {
     char1: null,
     char2: null,
@@ -50,16 +51,18 @@ document.addEventListener("DOMContentLoaded", () => {
   renderElement("face");
 
   for (let i = 0; i < characters.length; i++) {
-    renderElement(characters[i]);
+    renderElement(characters[i].name, characters[i].image);
   }
 
-  function renderElement(el) {
+  function renderElement(name, image = null) {
+    const src = image ? image : `/assets/images/${name}.png`;
+
     list.innerHTML += `
       <div class="character">
-        <img src="/assets/images/${el}.png" alt="${el}" />
+        <img src="${src}" alt="${name}" />
         <div class="character-buttons">
-          <button onclick="setCharacter1('${el}')">Set as Character 1</button>
-          <button onclick="setCharacter2('${el}')">Set as Character 2</button>
+          <button onclick="setCharacter1('${name}')">Set as Character 1</button>
+          <button onclick="setCharacter2('${name}')">Set as Character 2</button>
         </div>
       </div>`;
   }
