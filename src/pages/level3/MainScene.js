@@ -1,4 +1,4 @@
-import Player from "./Player.js";
+import Player from "/src/utils/helpers/Player.js";
 
 class MainScene extends Phaser.Scene {
   constructor(p1X, p1Y, p2X, p2Y, char1, char2) {
@@ -22,7 +22,6 @@ class MainScene extends Phaser.Scene {
     this.load.image("tiles-palm", "/assets/tilesets/palm.png");
     this.load.image("tiles-hills-background", "/assets/tilesets/hills.png");
     this.load.image("tiles-door", "/assets/tilesets/door.png");
-    
   }
 
   create() {
@@ -30,16 +29,30 @@ class MainScene extends Phaser.Scene {
 
     const hillsMap = this.make.tilemap({ key: "hillsMap" });
 
-    const hillsFloor = hillsMap.addTilesetImage("tiles-stones","tiles-stones-floor",32,32);
-    const palm = hillsMap.addTilesetImage("palm", "tiles-palm",32,32);
-    const hillsBackGround = hillsMap.addTilesetImage("hills","tiles-hills-background",32,32);
-    const door = hillsMap.addTilesetImage("door", "tiles-door",32,32);
+    const hillsFloor = hillsMap.addTilesetImage(
+      "tiles-stones",
+      "tiles-stones-floor",
+      32,
+      32
+    );
+    const palm = hillsMap.addTilesetImage("palm", "tiles-palm", 32, 32);
+    const hillsBackGround = hillsMap.addTilesetImage(
+      "hills",
+      "tiles-hills-background",
+      32,
+      32
+    );
+    const door = hillsMap.addTilesetImage("door", "tiles-door", 32, 32);
 
-    const hillsBackGroundLayer = hillsMap.createLayer("background",hillsBackGround,-250,0);
-    const hillsFloorLayer = hillsMap.createLayer("ground",hillsFloor,-250,0);
+    const hillsBackGroundLayer = hillsMap.createLayer(
+      "background",
+      hillsBackGround,
+      -250,
+      0
+    );
+    const hillsFloorLayer = hillsMap.createLayer("ground", hillsFloor, -250, 0);
     const palmLayer = hillsMap.createLayer("decoration", palm, -250, 0);
-    const doorLayer = hillsMap.createLayer("door",door,-250,0)
-
+    const doorLayer = hillsMap.createLayer("door", door, -250, 0);
 
     hillsFloorLayer.setCollisionByProperty({ collision: true });
     doorLayer.setCollisionByProperty({ nextLevel: true });
@@ -62,7 +75,7 @@ class MainScene extends Phaser.Scene {
     });
 
     this.player1 = new Player({
-      label : "player1",
+      label: "player1",
       scene: this,
       x: this.p1x,
       y: this.p1y,
@@ -79,7 +92,7 @@ class MainScene extends Phaser.Scene {
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
     this.player2 = new Player({
-      label : 'player2',
+      label: "player2",
       scene: this,
       x: this.p2x,
       y: this.p2y,
@@ -91,7 +104,6 @@ class MainScene extends Phaser.Scene {
     this.add.existing(this.player2);
     this.player2.inputKeys = this.input.keyboard.createCursorKeys(); //detect arrow key presses for player2 (right-side)
 
-    
     this.player2.setFriction(0.05, 0.1, 0.01);
     this.player1.setFriction(0.05, 0.1, 0.01);
 
@@ -121,13 +133,12 @@ class MainScene extends Phaser.Scene {
         }
       });
     });
-
   }
-  
+
   update() {
     this.player1.update();
     this.player2.update();
-    
+
     if (
       Phaser.Input.Keyboard.JustDown(this.player2.inputKeys.up) &&
       this.characterTouchingGround &&
@@ -165,6 +176,6 @@ class MainScene extends Phaser.Scene {
       }, 300);
     }
   }
-  }
+}
 
 export default MainScene;
