@@ -13,11 +13,9 @@ class Player extends Phaser.Physics.Matter.Sprite {
       height: height - 6,
     });
     this.setFixedRotation();
-    
   }
 
   static preload(scene, char1, char2) {
-
     if (char1 === "player1" || char2 === "player1") {
       scene.load.image("player1", "/assets/characters/right.png");
     }
@@ -30,7 +28,6 @@ class Player extends Phaser.Physics.Matter.Sprite {
     if (char2 !== "player1" && char2 !== "player2") {
       scene.load.image(char2, `/assets/images/${char2}.png`);
     }
-
   }
 
   update() {
@@ -42,15 +39,14 @@ class Player extends Phaser.Physics.Matter.Sprite {
     } else if (this.inputKeys.right.isDown) {
       playerVelocity.x = 1;
     }
-    if (this.inputKeys.up.isDown) {
-      playerVelocity.y = 0;
-    } else if (this.inputKeys.down.isDown) {
-      playerVelocity.y = 1;
-    }
+    // if (this.inputKeys.up.isDown) {
+    //   playerVelocity.y = 0;
+    // } else if (this.inputKeys.down.isDown) {
+    //   playerVelocity.y = 1;
+    // }
     playerVelocity.normalize();
     playerVelocity.scale(speed);
     this.setVelocity(playerVelocity.x, playerVelocity.y);
-    
   }
 }
 

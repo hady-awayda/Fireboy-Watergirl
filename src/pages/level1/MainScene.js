@@ -9,7 +9,7 @@ class MainScene extends Phaser.Scene {
     this.p2y = p2Y;
     this.char1 = char1;
     this.char2 = char2;
-    this.characterTouchingGround = false;
+    // this.characterTouchingGround = false;
     this.canJump = true;
   }
 
@@ -58,11 +58,24 @@ class MainScene extends Phaser.Scene {
     const palmLayer = jungleMap.createLayer("Palm_Layer", palm, -250, 0);
 
     jungleFloorLayer.setCollisionByProperty({ collision: true });
+    doorLayer.setCollisionByProperty({ nextLevel: true });
 
     this.matter.world.convertTilemapLayer(jungleBackGroundLayer);
     this.matter.world.convertTilemapLayer(jungleFloorLayer);
     this.matter.world.convertTilemapLayer(doorLayer);
     this.matter.world.convertTilemapLayer(palmLayer);
+
+    jungleFloorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "jungleFloorTile";
+      }
+    });
+
+    doorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "doorTile";
+      }
+    });
 
     this.player1 = new Player({
       label: "player1",
@@ -105,13 +118,22 @@ class MainScene extends Phaser.Scene {
         if (
           (bodyA.label === "Circle Body" &&
             bodyB.gameObject &&
-            bodyB.label === "Rectangle Body") ||
+            bodyB.label === "jungleFloorTile") ||
           (bodyB.label === "Circle Body" &&
             bodyA.gameObject &&
-            bodyA.label === "Rectangle Body")
+            bodyA.label === "jungleFloorTile")
         ) {
           this.characterTouchingGround = true;
-          console.log("Door collided with");
+        }
+        if (
+          (bodyA.label === "Circle Body" &&
+            bodyB.gameObject &&
+            bodyB.label === "doorTile") ||
+          (bodyB.label === "Circle Body" &&
+            bodyA.gameObject &&
+            bodyA.label === "doorTile")
+        ) {
+          this.characterTouchingGround = true;
           window.location.href = "/src/pages/level2/index.html";
         }
       });
