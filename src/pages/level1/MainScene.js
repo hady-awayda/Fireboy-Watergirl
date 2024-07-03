@@ -1,4 +1,4 @@
-import Player from "./Player.js";
+import Player from "/src/utils/helpers/Player.js";
 
 class MainScene extends Phaser.Scene {
   constructor(p1X, p1Y, p2X, p2Y, char1, char2) {
@@ -9,9 +9,7 @@ class MainScene extends Phaser.Scene {
     this.p2y = p2Y;
     this.char1 = char1;
     this.char2 = char2;
-    this.characterTouchingGround1=false;
-    this.characterTouchingGround2=false;
-    this.characterTouchingGround=false;
+    this.canJump = true;
   }
 
   preload() {
@@ -24,29 +22,60 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-    //Detect collision with ground
-
     const jungleMap = this.make.tilemap({ key: "jungleMap" });
 
-    const jungleFloor = jungleMap.addTilesetImage("tiles-jungle","tiles-jungle-floor",32,32);
-    const palm = jungleMap.addTilesetImage("palm", "tiles-palm",32,32);
-    const jungleBackGround = jungleMap.addTilesetImage("jungle-background","tiles-jungle-background",32,32);
-    const door = jungleMap.addTilesetImage("door", "tiles-door",32,32);
+    const jungleFloor = jungleMap.addTilesetImage(
+      "tiles-jungle",
+      "tiles-jungle-floor",
+      32,
+      32
+    );
+    const palm = jungleMap.addTilesetImage("palm", "tiles-palm", 32, 32);
+    const jungleBackGround = jungleMap.addTilesetImage(
+      "jungle-background",
+      "tiles-jungle-background",
+      32,
+      32
+    );
+    const door = jungleMap.addTilesetImage("door", "tiles-door", 32, 32);
 
-    const jungleBackGroundLayer = jungleMap.createLayer("BG_Layer",jungleBackGround,-250,0);
-    const jungleFloorLayer = jungleMap.createLayer("Floor_Layer",jungleFloor,-250,0);
+    const jungleBackGroundLayer = jungleMap.createLayer(
+      "BG_Layer",
+      jungleBackGround,
+      -250,
+      0
+    );
+    const jungleFloorLayer = jungleMap.createLayer(
+      "Floor_Layer",
+      jungleFloor,
+      -250,
+      0
+    );
     const doorLayer = jungleMap.createLayer("Door_Layer", door, -250, 50);
-    const palmLayer = jungleMap.createLayer("Palm_Layer",palm,-250,0)
+    const palmLayer = jungleMap.createLayer("Palm_Layer", palm, -250, 0);
 
     jungleFloorLayer.setCollisionByProperty({ collision: true });
+    doorLayer.setCollisionByProperty({ nextLevel: true });
 
     this.matter.world.convertTilemapLayer(jungleBackGroundLayer);
     this.matter.world.convertTilemapLayer(jungleFloorLayer);
     this.matter.world.convertTilemapLayer(doorLayer);
     this.matter.world.convertTilemapLayer(palmLayer);
 
+    jungleFloorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "jungleFloorTile";
+      }
+    });
+
+    doorLayer.forEachTile((tile) => {
+      if (tile.physics.matterBody) {
+        tile.physics.matterBody.body.label = "doorTile";
+      }
+    });
+
     this.player1 = new Player({
-      label : "player1",
+      label: "player1",
       scene: this,
       x: this.p1x,
       y: this.p1y,
@@ -56,14 +85,9 @@ class MainScene extends Phaser.Scene {
     });
 
     this.add.existing(this.player1);
-    this.player1.inputKeys = this.input.keyboard.addKeys({
-      up: Phaser.Input.Keyboard.KeyCodes.SPACE,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-    });
+    this.player1.inputKeys = this.input.keyboard.createCursorKeys();
     this.player2 = new Player({
-      label : 'player2',
+      label: "player2",
       scene: this,
       x: this.p2x,
       y: this.p2y,
@@ -73,67 +97,85 @@ class MainScene extends Phaser.Scene {
     });
 
     this.add.existing(this.player2);
-    this.player2.inputKeys = this.input.keyboard.createCursorKeys(); //detect arrow key presses for player2 (right-side)
-
-    
-    this.player2.setFriction(0.05, 0.1, 0.01);
-    this.player1.setFriction(0.05, 0.1, 0.01);
-    this.player1.setScale(0.05);
-    this.player2.setScale(2)
-    
-    // Detect collisions between players and the jungleFloorLayer
-    this.matter.world.on('collisionactive', (event) => {
-      console.log("checking collisionactive")
-      event.pairs.forEach((pair) => {
-        const { bodyA, bodyB } = pair;
-
-        //console.log(bodyA.label);
-        //console.log(bodyB.label);
-        
-        // Check if the collision involves the jungleFloorLayer and any of the players
-        if (
-          (bodyA.label === 'Circle Body' && bodyB.gameObject && bodyB.label === "Rectangle Body")
-          ||(bodyB.label === 'Circle Body' && bodyA.gameObject && bodyA.label === "Rectangle Body")){
-            this.characterTouchingGround = true;
-            //console.log("reached first check")
-            console.log("player collided with floor !!!");
-          }
-          /*
-          if(
-          (bodyB.label === 'Circle Body' && bodyA.gameObject && bodyA.label === "Rectangle Body") 
-          ||(bodyA.label === 'Circle Body' && bodyB.gameObject && bodyB.label === "Rectangle Body")) {
-          this.characterTouchingGround2 = true;  // Set the flag when collision occurs
-          //console.log("reached second check")
-          console.log("player collided 222!!!")
-        }*/
-      });
+    this.player2.inputKeys = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.SPACE,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
     });
 
+    this.player2.setFriction(0.05, 0.1, 0.01);
+    this.player1.setFriction(0.05, 0.1, 0.01);
+
+    this.matter.world.on("collisionactive", (event) => {
+      event.pairs.forEach((pair) => {
+        const { bodyA, bodyB } = pair;
+        if (
+          (bodyA.label === "Circle Body" &&
+            bodyB.gameObject &&
+            bodyB.label === "jungleFloorTile") ||
+          (bodyB.label === "Circle Body" &&
+            bodyA.gameObject &&
+            bodyA.label === "jungleFloorTile")
+        ) {
+          this.characterTouchingGround = true;
+        }
+        if (
+          (bodyA.label === "Circle Body" &&
+            bodyB.gameObject &&
+            bodyB.label === "doorTile") ||
+          (bodyB.label === "Circle Body" &&
+            bodyA.gameObject &&
+            bodyA.label === "doorTile")
+        ) {
+          this.characterTouchingGround = true;
+          window.location.href = "/src/pages/level2/index.html";
+        }
+      });
+    });
   }
-  
+
   update() {
     this.player1.update();
     this.player2.update();
-    
-    
-    if (Phaser.Input.Keyboard.JustDown(this.player2.inputKeys.up) && this.characterTouchingGround) {
+
+    if (
+      Phaser.Input.Keyboard.JustDown(this.player2.inputKeys.up) &&
+      this.characterTouchingGround &&
+      this.canJump
+    ) {
       this.characterTouchingGround = false;
-      //Set skate velocity
-      this.player2.setVelocityY(-110);
-    }
-    else if (!this.characterTouchingGround){
-      
-    }
-    if (Phaser.Input.Keyboard.JustDown(this.player1.inputKeys.up) && this.characterTouchingGround) {
-      this.characterTouchingGround = false;
-      //Set skate velocity
-      this.player1.setVelocityY(-110);
+      this.canJump = false;
+      this.player2.setVelocityY(-100);
     }
 
-    else if (!this.characterTouchingGround){
-      //this.player1.inputKeys.up.enabled = false;
+    if (
+      Phaser.Input.Keyboard.JustDown(this.player1.inputKeys.up) &&
+      this.characterTouchingGround &&
+      this.canJump
+    ) {
+      this.characterTouchingGround = false;
+      this.canJump = false;
+      this.player1.setVelocityY(-100);
+    }
+
+    if (this.characterTouchingGround) {
+      if (
+        this.player1.body.velocity.y === 0 &&
+        this.player2.body.velocity.y === 0
+      ) {
+        this.characterTouchingGround = true;
+      } else {
+        this.characterTouchingGround = false;
+      }
+    }
+
+    if (!this.characterTouchingGround) {
+      setTimeout(() => {
+        this.canJump = true;
+      }, 300);
     }
   }
-  }
+}
 
 export default MainScene;

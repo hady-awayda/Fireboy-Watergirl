@@ -1,3 +1,16 @@
+if (!localStorage.getItem("characters")) {
+  localStorage.setItem(
+    "characters",
+    JSON.stringify({
+      createdCharacters: [],
+      selectedCharacters: {
+        char1: null,
+        char2: null,
+      },
+    })
+  );
+}
+
 const parallax_el = document.querySelectorAll(".parallax");
 
 let xValue = 0,

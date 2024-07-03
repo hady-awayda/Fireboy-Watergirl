@@ -5,6 +5,10 @@
 }
 
 body {
+  background-image: url("/assets/tilesets/spooky.png");
+  background-repeat: no-repeat;
+  background-position:center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
