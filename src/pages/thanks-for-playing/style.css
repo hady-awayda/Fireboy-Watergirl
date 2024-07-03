@@ -1,0 +1,48 @@
+body {
+    position: relative;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly darkens the background */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/assets/tilesets/spooky.png");
+    background-size: cover;
+    filter: blur(5px); /* Adjust the blur value as needed */
+    z-index: -1; /* Ensure it stays behind the content */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* Ensure container stays above the background */
+}
+
+.play-again {
+    padding: 10px 20px;
+    font-size: 1.5rem; /* Adjust font size as needed */
+    background-color: #00ffcc; /* Button background color */
+    color: #000; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.play-again:hover {
+    background-color: #00e6b8; /* Button background color on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
