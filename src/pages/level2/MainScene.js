@@ -86,13 +86,8 @@ class MainScene extends Phaser.Scene {
     this.player2.setFriction(0.05, 0.1, 0.01);
 
     this.matter.world.on("collisionactive", (event) => {
-      // console.log("checking collisionactive");
       event.pairs.forEach((pair) => {
         const { bodyA, bodyB } = pair;
-
-        // console.log(bodyA.gameObject);
-        // console.log(bodyB.gameObject);
-
         if (
           (bodyA.label === "Circle Body" &&
             bodyB.gameObject &&
