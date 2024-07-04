@@ -1,4 +1,4 @@
-import renderElement from "/src/utils/helpers/renderElement.js";
+import renderElement from "/src/utils/components/Character-Selector.js";
 
 if (!localStorage.getItem("characters")) {
   localStorage.setItem(

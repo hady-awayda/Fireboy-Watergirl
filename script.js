@@ -28,11 +28,8 @@ const image2 = storedCharacters.createdCharacters.find(
 const character1 = document.getElementById("char1");
 const character2 = document.getElementById("char2");
 
-if (char1 === "right") renderElement(character1, char1);
-else renderElement(character1, char1, `${image1 ? image1 : ""}`);
-
-if (char2 === "right2") renderElement(character2, char2);
-else renderElement(character2, char2, `${image2 ? image2 : ""}`);
+renderElement(character1, char1, image1);
+renderElement(character2, char2, image2);
 
 function renderElement(parent, name, image = null) {
   const src = image ? image : `/assets/images/${name}.png`;

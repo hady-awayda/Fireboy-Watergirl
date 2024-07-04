@@ -5,15 +5,15 @@ function renderElement(parent, name, image = null) {
     <div class="character">
       <img src="${src}" alt="${name}" />
       <div class="character-buttons-container">
-        <div class="character-buttons">
-          <button onclick="setCharacter1('${name}')">Set as Character 1</button>
-          <button onclick="setCharacter2('${name}')">Set as Character 2</button>
-        </div>
         ${
           image
             ? `<button onclick="deleteCharacter('${name}')">Delete Character</button>`
             : ""
         }
+        <div class="character-buttons">
+          <button onclick="setCharacter1('${name}')">Set as Character 1</button>
+          <button onclick="setCharacter2('${name}')">Set as Character 2</button>
+        </div>
       </div>
     </div>`;
 }
