@@ -44,7 +44,7 @@ button {
   -webkit-filter: blur(4px);
 }
 
-.fireboy {
+#char1 img {
   position: absolute;
   z-index: 2;
   width: 15%;
@@ -52,7 +52,7 @@ button {
   left: calc(50% - 400px);
 }
 
-.watergirl {
+#char2 img {
   position: absolute;
   z-index: 3;
   width: 15%;
@@ -98,7 +98,7 @@ button {
   -webkit-text-fill-color: transparent;
   font-weight: 700;
 }
-.leftbottom{
+.leftbottom {
   width: 90vw;
   font-size: 20px;
   display: flex;
@@ -106,13 +106,13 @@ button {
   height: 150px;
   margin-top: 100px;
 }
-.rightside{
+.rightside {
   height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
-.leftside{
-align-self: flex-end;
+.leftside {
+  align-self: flex-end;
 }

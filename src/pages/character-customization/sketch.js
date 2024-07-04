@@ -1,7 +1,7 @@
 let saveButton;
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(1200, 600);
   stroke(0);
   strokeWeight(20);
 
@@ -26,11 +26,18 @@ function saveCharacter() {
     return;
   }
 
-  saveCanvas(`${name}`, "png");
-
   let canvasImage = canvas.toDataURL("image/png");
 
   const characters = JSON.parse(localStorage.getItem("characters"));
+
+  const nameExists = characters.createdCharacters.some(
+    (character) => character.name === name
+  );
+
+  if (nameExists) {
+    alert("Character name already exists. Please choose a different name.");
+    return;
+  }
 
   characters.createdCharacters.push({ name: name, image: canvasImage });
 

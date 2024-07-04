@@ -1,3 +1,5 @@
+import renderElement from "/src/utils/helpers/renderElement.js";
+
 if (!localStorage.getItem("characters")) {
   localStorage.setItem(
     "characters",
@@ -36,8 +38,18 @@ function resetCharacters() {
   console.log(localStorage);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function deleteCharacter(characterName) {
+  let characters = JSON.parse(localStorage.getItem("characters"));
+  characters.createdCharacters = characters.createdCharacters.filter(
+    (char) => char.name !== characterName
+  );
+  localStorage.setItem("characters", JSON.stringify(characters));
+  renderCharacterList();
+}
+
+function renderCharacterList() {
   const list = document.getElementById("character-selection");
+  list.innerHTML = "";
 
   const characters = JSON.parse(
     localStorage.getItem("characters")
@@ -45,25 +57,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log(characters);
 
-  renderElement("face");
-  renderElement("fireboy");
-  renderElement("watergirl");
-  renderElement("face");
+  renderElement(list, "left");
+  renderElement(list, "right");
+  renderElement(list, "left2");
+  renderElement(list, "right2");
+  renderElement(list, "face");
+  renderElement(list, "fireboy");
+  renderElement(list, "watergirl");
 
   for (let i = 0; i < characters.length; i++) {
-    renderElement(characters[i].name, characters[i].image);
+    renderElement(list, characters[i].name, characters[i].image);
   }
+}
 
-  function renderElement(name, image = null) {
-    const src = image ? image : `/assets/images/${name}.png`;
-
-    list.innerHTML += `
-      <div class="character">
-        <img src="${src}" alt="${name}" />
-        <div class="character-buttons">
-          <button onclick="setCharacter1('${name}')">Set as Character 1</button>
-          <button onclick="setCharacter2('${name}')">Set as Character 2</button>
-        </div>
-      </div>`;
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  renderCharacterList();
 });
+
+window.setCharacter1 = setCharacter1;
+window.setCharacter2 = setCharacter2;
+window.resetCharacters = resetCharacters;
+window.deleteCharacter = deleteCharacter;

@@ -7,7 +7,7 @@
 body {
   background-image: url("/assets/tilesets/spooky.png");
   background-repeat: no-repeat;
-  background-position:center;
+  background-position: center;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -61,7 +61,7 @@ button {
   flex-direction: column;
   justify-content: space-around;
   height: 60vh;
-  width: 100%;
+  width: 90%;
 }
 
 img {
@@ -69,10 +69,14 @@ img {
 }
 
 #character-selection {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  column-gap: 20px;
+  row-gap: 80px;
+  justify-items: center;
   align-items: flex-start;
   height: 50%;
+  width: 100%;
 }
 
 .character {
@@ -99,4 +103,9 @@ img {
 
 .page-buttons button {
   padding: 10px 20px;
+}
+
+.character-buttons-container {
+  display: flex;
+  flex-direction: column;
 }
