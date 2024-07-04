@@ -4,12 +4,15 @@ body {
   padding: 0;
   background-color: #999;
 }
+
 body {
+  background-image: url("/assets/tilesets/spooky.png");
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+
 canvas {
   display: block;
   background-color: #fff;
