@@ -35,6 +35,7 @@ function resetCharacters() {
     char2: null,
   };
   localStorage.setItem("characters", JSON.stringify(characters));
+  renderCharacterList();
   console.log(localStorage);
 }
 
